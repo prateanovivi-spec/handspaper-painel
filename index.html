@@ -163,7 +163,9 @@ svg.grafico { width:100%; height:auto; display:block }
 body { margin:0 }
 [hidden] { display:none !important }   /* a tela de entrar some depois do login */
 
+
 /* finanças */
+.dono-acoes { display:flex; gap:6px; flex-wrap:wrap; align-items:center } .dono-nome { padding:7px 9px; border-radius:9px; border:1px solid var(--line); background:var(--bg); min-width:150px }
 .fin-topo { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:16px }
 .fin-mes { display:flex; align-items:center; gap:8px; font:700 14px var(--display); color:var(--muted); margin-right:auto }
 .fin-mes select, .fin-sel { padding:9px 12px; border-radius:10px; border:1px solid var(--line); background:var(--surface); font-weight:700 }
@@ -513,7 +515,7 @@ tr.fin-nao td { opacity:.5 }
   var AV = ["k-mint", "k-lav", "k-butter", "k-blush"];
   var TITULOS = { painel: "Painel", clientes: "Clientes", antigos: "Clientes antigas", pagamentos: "Pagamentos", planos: "Planos", cobranca: "Cobrança", novo: "Novo cliente", grupo: "Grupo do Telegram", relatorios: "Relatórios", financas: "Finanças" };
   var state = { base: null, pags: [], novos: [], avisosM: [], remocoes: [], podeEscrever: false, filtroClientes: "todos", filtroPainel: "atencao", busca: "", db: null, nome: "",
-    fin: { ok: null, linhas: [], clube: null, mes: "", filtro: "tudo", previa: null } };
+    fin: { ok: null, linhas: [], clube: null, mes: "", filtro: "tudo", previa: null }, donos: {} };
 
   function el(id) { return document.getElementById(id); }
   function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -780,6 +782,7 @@ tr.fin-nao td { opacity:.5 }
         (linhas.length ? '<div class="rolar"><table><thead><tr>' + cab.map(function (h) { return "<th>" + esc(h) + "</th>"; }).join("") + "</tr></thead><tbody>" +
           linhas.map(function (l) { return "<tr>" + l.map(function (x) { return "<td>" + x + "</td>"; }).join("") + "</tr>"; }).join("") + "</tbody></table></div>" : '<p class="vazio">' + esc(vazio) + "</p>") + "</div>";
     }
+    (state.avisosM || []).forEach(function (a) { if (a.acao === "dono" && a.telegram_id) state.donos[String(a.telegram_id)] = a.dono === "minha" ? "sua: " + (a.cliente || "") : "não é sua"; });
     var saiuNoGrupo = lista.filter(function (c) { return c.s === "saiu do grupo"; });
     var cz = b.conciliacao || {}, pedidas = {};
     state.remocoes.forEach(function (x) { pedidas[String(x.telegram_id)] = x; });
@@ -814,8 +817,15 @@ tr.fin-nao td { opacity:.5 }
         b.saiu_antes.map(function (d) { return [conta(d), esc(d.nome_vermelho), esc(d.mes)]; }), "Ninguém.") +
       bloco("Nomes parecidos", "Pode ser a mesma pessoa, sem certeza.", ["Na planilha", "No grupo", "Parecido"],
         b.parecidos.map(function (p) { return [esc(p.cliente), conta(p.conta), p.nota + "%"]; }), "Nenhum.") +
-      bloco("Contas para conferir", "Sem nome, sem marca, marcas das duas lojas juntas, ou RF sem nome na lista. Nada é decidido sozinho.", ["Conta", "Motivo"],
-        b.conferir_grupo.map(function (d) { return [conta(d), esc(d.motivo)]; }), "Nada para conferir.") +
+      // 06/11 (pedido dela): conta do grupo sem dono -> ela diz de quem é, uma vez, e o robô nunca mais pergunta
+      bloco("Contas do grupo sem dono", "Contas sem marca ou com nome que o robô não reconheceu. Toque em <b>É minha</b> e escolha a cliente, ou em <b>Não é minha</b> (some do seu painel). Em até 15 minutos o robô aplica.", ["Conta", "Por quê", ""],
+        b.conferir_grupo.map(function (d) {
+          var feito = state.donos[String(d.id)];
+          return [conta(d), esc(d.motivo), feito ? '<span class="chip s-ok">' + esc(feito) + "</span>" : !state.podeEscrever ? "" :
+            '<span class="dono-acoes"><input list="lista-nomes" class="dono-nome" id="dn-' + esc(d.id) + '" placeholder="qual cliente?" aria-label="Qual cliente é">' +
+            '<button class="btn btn-brand" type="button" data-dono="minha" data-id="' + esc(d.id) + '" data-conta="' + esc(d.nome || "") + '">É minha</button> ' +
+            '<button class="btn btn-ghost" type="button" data-dono="outra" data-id="' + esc(d.id) + '" data-conta="' + esc(d.nome || "") + '">Não é minha</button></span>'];
+        }), "Nenhuma conta sem dono.") +
       bloco("Possíveis duplicados", "", ["Onde", "O que eu vi"], b.duplicados.map(function (d) { return [esc(d.onde), esc(d.texto)]; }), "Nenhum.");
 
     // novo cliente
@@ -919,6 +929,16 @@ tr.fin-nao td { opacity:.5 }
       el("f-obs").value = "comprovante do WhatsApp" + (x.pagador ? " de " + x.pagador : "");
       state.conferindo = x.id; el("f-msg").className = "msg"; el("f-msg").textContent = "Confira a cliente e toque em Registrar.";
       el("cartao-form").scrollIntoView({ block: "start" }); el("f-nome").focus();
+    }
+    var dn2 = ev.target.closest("[data-dono]");
+    if (dn2 && state.db) {
+      var idc = dn2.getAttribute("data-id"), qual = dn2.getAttribute("data-dono"), campo = el("dn-" + idc), cli = campo ? campo.value.trim() : "";
+      if (qual === "minha" && !cli) { if (campo) { campo.focus(); campo.placeholder = "escreva o nome da cliente"; } return; }
+      dn2.disabled = true;
+      state.db.collection("avisos_manuais").add({ acao: "dono", dono: qual, telegram_id: Number(idc), nome_conta: dn2.getAttribute("data-conta"),
+        cliente: cli, registrado_em: new Date().toISOString() }).then(function () {
+          state.donos[idc] = qual === "minha" ? "sua: " + cli : "não é sua"; render(); })
+        .catch(function () { dn2.disabled = false; });
     }
     var av = ev.target.closest("[data-aviso]");
     if (av && state.db) {
