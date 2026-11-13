@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hands Paper · Renovação</title>
   <meta name="description" content="Escolha o seu pacote e renove com Pix ou cartão.">
-  <meta property="og:title" content="Hands Paper · Renove o seu acesso 💖">
-  <meta property="og:description" content="Escolha o seu pacote: Pix copia e cola.">
-  
+  <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
@@ -40,6 +38,7 @@
     .chave .caixa { background:var(--card); border:1.5px dashed var(--rosa); border-radius:14px; padding:14px }
     .chave b { font-size:22px; color:var(--vinho); letter-spacing:.04em }
     footer { text-align:center; padding:18px 16px 32px; font-size:15px }
+    body.neutra main, body.neutra .chave, body.neutra footer, body.neutra .intro { display:none }
     .aviso { position:fixed; left:50%; bottom:22px; transform:translateX(-50%); background:var(--vinho); color:#fff; padding:10px 16px; border-radius:99px; font-weight:700; display:none }
   </style>
 </head>
@@ -49,71 +48,58 @@
     <p class="intro">Escolha o seu plano para renovar o acesso ao <b>clube Hands Paper</b>.</p>
   </header>
   <main>
-    <article class="pacote">
+    <article class="pacote" data-i="0">
       
       <h2>Mensal só arquivos</h2>
       <p class="preco">R$ 25,00</p>
       <p class="sub">1 mês · grupo de arquivos</p>
-      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix011424615091000138520400005303986540525.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304B425">Copiar Pix copia e cola</button>
-      <button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix011424615091000138520400005303986540525.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304B425">ver QR code</button>
-      <div class="qr" hidden></div>
+      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix011424615091000138520400005303986540525.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304B425">Copiar Pix copia e cola</button><button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix011424615091000138520400005303986540525.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304B425">ver QR code</button><div class="qr" hidden></div>
       
     </article>
-    <article class="pacote">
+    <article class="pacote" data-i="1">
       
       <h2>Mensal arquivos + cursos</h2>
       <p class="preco">R$ 35,00</p>
       <p class="sub">1 mês · arquivos e cursos</p>
-      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix011424615091000138520400005303986540535.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304CC96">Copiar Pix copia e cola</button>
-      <button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix011424615091000138520400005303986540535.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304CC96">ver QR code</button>
-      <div class="qr" hidden></div>
+      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix011424615091000138520400005303986540535.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304CC96">Copiar Pix copia e cola</button><button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix011424615091000138520400005303986540535.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304CC96">ver QR code</button><div class="qr" hidden></div>
       
     </article>
-    <article class="pacote">
+    <article class="pacote" data-i="2">
       
       <h2>Semestral só arquivos</h2>
       <p class="preco">R$ 120,00</p>
       <p class="sub">6 meses · sai R$ 20 por mês</p>
-      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406120.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304841B">Copiar Pix copia e cola</button>
-      <button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406120.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304841B">ver QR code</button>
-      <div class="qr" hidden></div>
+      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406120.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304841B">Copiar Pix copia e cola</button><button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406120.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***6304841B">ver QR code</button><div class="qr" hidden></div>
       
     </article>
-    <article class="pacote">
+    <article class="pacote" data-i="3">
       
       <h2>Semestral arquivos + cursos</h2>
       <p class="preco">R$ 180,00</p>
       <p class="sub">6 meses · sai R$ 30 por mês</p>
-      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406180.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***63048086">Copiar Pix copia e cola</button>
-      <button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406180.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***63048086">ver QR code</button>
-      <div class="qr" hidden></div>
+      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406180.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***63048086">Copiar Pix copia e cola</button><button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406180.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***63048086">ver QR code</button><div class="qr" hidden></div>
       
     </article>
-    <article class="pacote">
+    <article class="pacote" data-i="4">
       
       <h2>Anual só arquivos</h2>
       <p class="preco">R$ 220,00</p>
       <p class="sub">12 meses · sai R$ 18,33 por mês</p>
-      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406220.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***630451BA">Copiar Pix copia e cola</button>
-      <button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406220.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***630451BA">ver QR code</button>
-      <div class="qr" hidden></div>
+      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406220.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***630451BA">Copiar Pix copia e cola</button><button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406220.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***630451BA">ver QR code</button><div class="qr" hidden></div>
       
     </article>
-    <article class="pacote destaque">
+    <article class="pacote destaque" data-i="5">
       <span class="selo">mais econômico</span>
       <h2>Anual arquivos + cursos</h2>
       <p class="preco">R$ 320,00</p>
       <p class="sub">12 meses · sai R$ 26,67 por mês</p>
-      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406320.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***63041D25">Copiar Pix copia e cola</button>
-      <button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406320.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***63041D25">ver QR code</button>
-      <div class="qr" hidden></div>
+      <button class="btn pix-btn" type="button" data-codigo="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406320.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***63041D25">Copiar Pix copia e cola</button><button class="link-qr" type="button" data-qr="00020126360014br.gov.bcb.pix0114246150910001385204000053039865406320.005802BR5922RAFAEL PRATEANO ANGELO6009SAO PAULO62070503***63041D25">ver QR code</button><div class="qr" hidden></div>
       
     </article>
   </main>
   <section class="chave">
     <div class="caixa">
-      Prefere digitar? Chave Pix (cnpj):<br><b>24.615.091/0001-38</b><br>
-      <button class="btn pix-btn" type="button" data-codigo="24615091000138" style="max-width:260px;margin:10px auto 0">Copiar chave Pix</button>
+      Prefere digitar? Chave Pix (cnpj):<br><b>24.615.091/0001-38</b><br><button class="btn pix-btn" type="button" data-codigo="24615091000138" style="max-width:260px;margin:10px auto 0">Copiar chave Pix</button>
     </div>
   </section>
   <footer>Depois de pagar, <b>me mande o comprovante no WhatsApp</b> (na mesma conversa). Obrigada! 💖</footer>
@@ -126,6 +112,42 @@
       if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(t).then(ok, function () { velho(t); ok(); }); } else { velho(t); ok(); }
     }
     function velho(t) { var x = document.createElement("textarea"); x.value = t; x.style.position = "fixed"; x.style.opacity = "0"; document.body.appendChild(x); x.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(x); }
+    // 06/11: link SÓ DA CLIENTE (#c=…&p=…): cada pacote paga no Mercado Pago (Pix ou cartão) e confirma sozinho
+    (function () {
+      var h = {}; location.hash.replace(/^#/, "").split("&").forEach(function (x) { var i = x.indexOf("="); if (i > 0) h[x.slice(0, i)] = decodeURIComponent(x.slice(i + 1)); });
+      if (!h.c || !h.p) return;
+      try {
+        var b = atob(h.p.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((h.p.length + 3) % 4)), ids = [];
+        for (var i = 0; i + 16 <= b.length; i += 16) {
+          var hex = ""; for (var j = i; j < i + 16; j++) hex += ("0" + b.charCodeAt(j).toString(16)).slice(-2);
+          ids.push(h.c + "-" + hex.slice(0, 8) + "-" + hex.slice(8, 12) + "-" + hex.slice(12, 16) + "-" + hex.slice(16, 20) + "-" + hex.slice(20));
+        }
+      } catch (e) { return; }
+      var MP = "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=";
+      // Central de Convites (12/11): x=1 = convite PROMOCIONAL — o 1º par de botões é o 1º mês de cliente nova
+      var o = 0;
+      if (h.x === "1" && ids.length >= 2) {
+        o = 2;
+        var pr = document.createElement("article"); pr.className = "pacote destaque";
+        pr.innerHTML = '<span class="selo">1º mês</span><h2>Primeiro mês</h2><p class="preco">R$ </p>'
+          + '<p class="sub">oferta de boas-vindas · depois segue o plano mensal</p>'
+          + '<a class="btn pix-btn" target="_blank" rel="noopener" href="' + MP + ids[0] + '">Pagar com Pix</a>'
+          + '<a class="btn cartao-btn" target="_blank" rel="noopener" href="' + MP + ids[1] + '">💳 Pagar no cartão de crédito</a>';
+        var p1 = document.querySelector("article.pacote"); if (p1) p1.parentNode.insertBefore(pr, p1);
+      }
+      document.querySelectorAll("article.pacote[data-i]").forEach(function (a) {
+        var n = +a.getAttribute("data-i"), pix = ids[o + 2 * n], cartao = ids[o + 2 * n + 1];
+        if (!pix) return;
+        var bp = a.querySelector(".pix-btn"), q = a.querySelector(".link-qr"), box = a.querySelector(".qr"), bc = a.querySelector(".cartao-btn");
+        var np = document.createElement("a"); np.className = "btn pix-btn"; np.href = MP + pix; np.target = "_blank"; np.rel = "noopener"; np.textContent = "Pagar com Pix";
+        bp.replaceWith(np); if (q) q.remove(); if (box) box.remove();
+        if (bc && cartao) bc.href = MP + cartao;
+      });
+      var cx = document.querySelector(".caixa"); if (cx) cx.style.display = "none";
+      if (ids.length >= 2) document.body.classList.remove("neutra");   // só um endereço válido mostra os planos
+      var ft = document.querySelector("footer"); if (ft) ft.innerHTML = "O pagamento é confirmado <b>na hora</b> pelo Mercado Pago. Depois de pagar, <b>me mande o comprovante no WhatsApp</b> (na mesma conversa). Obrigada! 💖";
+      var it = document.querySelector(".intro"); if (it && h.n) it.innerHTML = "Oi, <b>" + h.n.replace(/[<>&"]/g, "") + "</b>! " + it.innerHTML;
+    })();
     document.querySelectorAll("[data-codigo]").forEach(function (b) { b.addEventListener("click", function () { copiar(b.getAttribute("data-codigo"), b); }); });
     document.querySelectorAll("[data-qr]").forEach(function (b) {
       b.addEventListener("click", function () {
